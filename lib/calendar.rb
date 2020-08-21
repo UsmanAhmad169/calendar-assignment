@@ -205,18 +205,13 @@ module Cal
     end
 
     def edit_event(event, name, detail, date)
-      event_index = @events.find_index(event)
+      return nil unless @events.include? event
 
-      event = nil
-      unless event_index.nil?
-        event = @events[event_index]
-        event.name = name
-        event.detail = detail
-        event.date = date
+      event.name = name
+      event.detail = detail
+      event.date = date
 
-        sort_and_write_storage_file
-      end
-
+      sort_and_write_storage_file
       event
     end
 
