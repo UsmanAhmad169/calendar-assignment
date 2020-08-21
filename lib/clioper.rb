@@ -15,7 +15,7 @@ class CLIOperations
     end
     res = CLIOperations.secure_ranged_integer_input(options.length)
 
-    # call the respective corresponding to the selected input
+    # call the respective lambda function corresponding to the selected input
 
     options[res.to_i - 1][1].call unless res.nil?
     res
@@ -37,7 +37,6 @@ class CLIOperations
 
       res = prompted_input(prompt)
     end
-
     return nil if res == '!'
 
     res
