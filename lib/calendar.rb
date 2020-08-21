@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
+# Author: Usman Ahmad
+
 require 'csv'
 require 'colorize'
 require 'date'
 require 'logger'
-
-require_relative 'safe'
 
 # Calendar module for a simple calendar alongwith the facility to add/remove/
 # delete and view events
@@ -180,7 +180,7 @@ module Cal
     include PrintableCalendar
     include PersistentCalendar
 
-    attr_accessor :events
+    attr_accessor :events, :storage_file # only for testing
 
     def initialize(storage_file = DEFAULT_STORAGE_FILE)
       @storage_file = storage_file

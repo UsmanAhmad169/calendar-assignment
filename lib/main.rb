@@ -6,7 +6,6 @@ require 'date'
 
 require_relative 'calendar'
 require_relative 'clioper'
-require_relative 'safe'
 
 # A Command Line Interface for the 'Calendar' class
 class CalendarCLI

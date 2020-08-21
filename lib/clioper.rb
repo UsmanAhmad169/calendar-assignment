@@ -5,9 +5,6 @@
 # A class for easy handling of Command Line Interfaces
 class CLIOperations
   DEF_INT_PROMPT = 'Please enter a value'
-  # def initialize(options)
-  #   @options = options
-  # end
 
   def self.secure_option_input(options)
     options.each.with_index do |option, ind|
