@@ -4,7 +4,6 @@ A simple calendar that can be used from the CLI.
 
 ## Dependencies
 1. rspec
-Rspec was used here for testing
 ```
 gem install rspec
 ```
