@@ -4,18 +4,19 @@
 
 # A class for easy handling of Command Line Interfaces
 class CLIOperations
+  QUIT_CHARACTER = '!'
   DEF_INT_PROMPT = 'Please enter a value'
 
   def self.general_secure_input(prompt, invalid_input_msg, validation_lambda)
-    prompt += ' {! to quit}: '
+    prompt += " {#{QUIT_CHARACTER} to quit}: "
     res = prompted_input(prompt)
 
-    until res == '!' || validation_lambda.call(res)
+    until res == QUIT_CHARACTER || validation_lambda.call(res)
       puts invalid_input_msg
 
       res = prompted_input(prompt)
     end
-    return nil if res == '!'
+    return nil if res == QUIT_CHARACTER
 
     res
   end
@@ -26,7 +27,7 @@ class CLIOperations
   end
 
   def self.secure_ranged_integer_input(max_value, min_value = 1, input_prompt = DEF_INT_PROMPT)
-    return nil if max_value < min_value
+    raise(StandardError, "max_value (#{max_value}) is less than min_value (#{min_value})") if max_value < min_value
 
     response_msg = input_prompt + " (#{min_value} - #{max_value})"
     invalid_input_msg = 'Invalid input... Please try again...'
