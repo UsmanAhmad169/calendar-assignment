@@ -6,25 +6,6 @@
 class CLIOperations
   DEF_INT_PROMPT = 'Please enter a value'
 
-  def self.secure_option_input(options)
-    options.each.with_index do |option, ind|
-      puts "#{ind + 1}. #{option[0]}"
-    end
-    res = CLIOperations.secure_ranged_integer_input(options.length)
-
-    # call the respective lambda function corresponding to the selected input
-
-    options[res.to_i - 1][1].call unless res.nil?
-    res
-  end
-
-  def integer_input_response
-    @options.each.with_index do |option, i|
-      puts "#{i + 1}. #{option}"
-    end
-    CLIOperations.get_integer_response(@options.length)
-  end
-
   def self.general_secure_input(prompt, invalid_input_msg, validation_lambda)
     prompt += ' {! to quit}: '
     res = prompted_input(prompt)
@@ -49,8 +30,20 @@ class CLIOperations
 
     response_msg = input_prompt + " (#{min_value} - #{max_value})"
     invalid_input_msg = 'Invalid input... Please try again...'
-    validation_lambda = ->(int_str) { int_str =~ /^\d+$/ && int_str.to_i <= max_value && int_str.to_i >= min_value }
+    validation_lambda = ->(int_str) { int_str =~ /^\d+$/ && (min_value..max_value).include?(int_str.to_i) }
 
     general_secure_input(response_msg, invalid_input_msg, validation_lambda)
+  end
+
+  def self.secure_option_input(options)
+    options.each.with_index do |option, ind|
+      puts "#{ind + 1}. #{option[0]}"
+    end
+    res = CLIOperations.secure_ranged_integer_input(options.length)
+
+    # call the respective lambda function corresponding to the selected input
+
+    options[res.to_i - 1][1].call unless res.nil?
+    res
   end
 end
