@@ -44,7 +44,12 @@ class CLIOperations
 
     # call the respective lambda function corresponding to the selected input
 
-    options[res.to_i - 1][1].call unless res.nil?
-    res
+    return_values = nil
+    unless res.nil?
+      _, procedure, *procedure_args = options[res.to_i - 1]
+      return_values = procedure.call(*procedure_args)
+    end
+
+    [res, return_values]
   end
 end

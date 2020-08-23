@@ -26,7 +26,8 @@ class CalendarCLI
     ]
 
     loop do
-      break if CLIOperations.secure_option_input(options).nil?
+      res, = CLIOperations.secure_option_input(options)
+      break if res.nil?
 
       puts
     end
