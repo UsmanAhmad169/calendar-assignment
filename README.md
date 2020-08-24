@@ -12,6 +12,10 @@ ruby lib/main.rb
 rspec tests/<testname>
 ```
 Here replace the ```<testname>``` with the file name for the test.
+Use the following for groups and example names printed out,
+```
+rspec tests/<testname> -f d
+```
 
 ## Dependencies
 1. rspec
