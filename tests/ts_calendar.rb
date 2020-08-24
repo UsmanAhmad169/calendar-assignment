@@ -74,7 +74,7 @@ describe Cal::Calendar, '#edit_event' do
     new_detail = 'Some Detail'
     new_date = Date.iso8601('2020-08-21')
 
-    event_with_same_attributes = Cal::Event.new('Another event', 'This is another event', Date.iso8601('2019-03-30'))
+    event_with_same_attributes = Cal::Event.new('An event', 'This is an event', Date.iso8601('2018-01-30'))
     edit_return = @calendar.edit_event(event_with_same_attributes, new_name, new_detail, new_date)
 
     expect(edit_return).to eq(nil)
