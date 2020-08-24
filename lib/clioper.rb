@@ -40,7 +40,7 @@ class CLIOperations
     options.each.with_index do |option, ind|
       puts "#{ind + 1}. #{option[0]}"
     end
-    res = CLIOperations.secure_ranged_integer_input(options.length)
+    res = secure_ranged_integer_input(options.length)
 
     # call the respective lambda function corresponding to the selected input
 
