@@ -30,7 +30,7 @@ gem install colorize
 ## Versions
 ### Ruby version
 ```
-ruby 1.7.1
+ruby 2.7.1
 ```
 ### Rspec version
 ```
