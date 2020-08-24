@@ -5,7 +5,11 @@ A simple calendar that can be used from the CLI.
 ## Usage
 1. From the main directory type,
 ```
+<<<<<<< HEAD
 ruby lib/main.rb
+=======
+ruby lib/main
+>>>>>>> 4386342f2351309482722db5cbbb7873ecd4ed37
 ```
 2. For the test cases,
 ```
