@@ -2,6 +2,17 @@
 # Calendar
 A simple calendar that can be used from the CLI.
 
+## Usage
+1. From the main directory type,
+```
+ruby lib/main.rb
+```
+2. For the test cases,
+```
+rspec tests/<testname>
+```
+Here replace the ```<testname>``` with the file name for the test.
+
 ## Dependencies
 1. rspec
 ```
