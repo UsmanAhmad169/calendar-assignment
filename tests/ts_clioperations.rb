@@ -74,3 +74,58 @@ describe CLIOperations, '#secure_ranged_integer_input' do
     end
   end
 end
+
+describe CLIOperations, '#secure_option_input' do
+  context 'basic test' do
+    it 'displays option prompts and takes input until a valid response is selected and the response is returned' do
+      options = [
+        ['Option 1', -> {}],
+        ['Option 2', -> {}],
+        ['Option 3', -> {}]
+      ].freeze
+
+      invalid_inputs = ['hello', '31', '-1', '']
+      valid_input = '2'
+
+      allow($stdin).to receive(:gets).and_return(*invalid_inputs, valid_input)
+
+      res, = CLIOperations.secure_option_input(options)
+
+      expect(res).to eq(valid_input)
+    end
+  end
+
+  it 'executes the lambda for the valid option and also returns its return values' do
+    options = [
+      ['Option 1', ->(*args) { return args }, 1, 2],
+      ['Option 2', ->(*args) { return args }, 3, 4],
+      ['Option 3', ->(*args) { return args }, 5, 6]
+    ].freeze
+
+    invalid_inputs = ['hello', '31', '-1', '']
+    valid_input = '1'
+
+    allow($stdin).to receive(:gets).and_return(*invalid_inputs, valid_input)
+
+    res, return_values = CLIOperations.secure_option_input(options)
+
+    expect(res).to eq(valid_input)
+    expect(return_values).to eq([1, 2])
+  end
+
+  it 'returns [nil, nil] if quit character is inputted' do
+    options = [
+      ['Option 1', ->(*args) { return args }, 1, 2],
+      ['Option 2', ->(*args) { return args }, 3, 4],
+      ['Option 3', ->(*args) { return args }, 5, 6]
+    ].freeze
+
+    invalid_inputs = ['hello', '31', '-1', '']
+
+    allow($stdin).to receive(:gets).and_return(*invalid_inputs, CLIOperations::QUIT_CHARACTER)
+
+    returned = CLIOperations.secure_option_input(options)
+
+    expect(returned).to eq([nil, nil])
+  end
+end
