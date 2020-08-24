@@ -23,7 +23,7 @@ class CalendarCLI
       ['Add an event.', -> { add_event }],
       ['Remove an event.', -> { remove_event }],
       ['Edit an event.', -> { edit_event }]
-    ]
+    ].freeze
 
     loop do
       res, = CLIOperations.secure_option_input(options)
@@ -82,7 +82,7 @@ class CalendarCLI
       ['Edit name', -> { edit_name(event) }],
       ['Edit detail', -> { edit_detail(event) }],
       ['Edit date', -> { edit_date(event) }]
-    ]
+    ].freeze
     CLIOperations.secure_option_input(options)
   end
 
